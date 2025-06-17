@@ -225,10 +225,12 @@ class CategoryController extends Controller
             $category_translation->delete();
         }
 
-        foreach (Product::where('category_id', $category->id)->get() as $product) {
-            $product->category_id = null;
-            $product->save();
-        }
+        // foreach (Product::where('category_id', $category->id)->get() as $product) {
+        //     $product->category_id = null;
+        //     $product->save();
+        // }
+
+        Product::where('category_id', $category->id)->update(['category_id' => null]);
 
         CategoryUtility::delete_category($id);
         Cache::forget('featured_categories');
