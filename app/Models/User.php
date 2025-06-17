@@ -160,10 +160,10 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasOne(UserCoupon::class);
     }
 
-    public function preorderProducts()
-    {
-        return $this->hasMany(PreorderProduct::class);
-    }
+    // public function preorderProducts()
+    // {
+    //     return $this->hasMany(PreorderProduct::class);
+    // }
     public function preorders()
     {
         return $this->hasMany(Preorder::class);
