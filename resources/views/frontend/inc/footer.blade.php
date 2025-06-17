@@ -561,7 +561,17 @@
             <!-- Copyright -->
             <div class="col-lg-6 order-1 order-lg-0">
                 <div class="text-center text-lg-left fs-14" current-verison="{{get_setting("current_version")}}">
-                    {!! get_setting('frontend_copyright_text', null, App::getLocale()) !!}
+                   @php
+                        $rawText = get_setting('frontend_copyright_text', null, App::getLocale());
+                        $styledText = str_replace(
+                            'Geel Tech',
+                            '<a href="https://geeltech.com" style="color: #38B6FD; text-decoration: none;" target="_blank">Geel Tech</a>',
+                            $rawText
+                        );
+                    @endphp
+                    
+                    {!! $styledText !!}
+
                 </div>
             </div>
 
