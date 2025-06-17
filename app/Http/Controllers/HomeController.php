@@ -34,6 +34,7 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\URL;
 use ZipArchive;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Schema;
 
 class HomeController extends Controller
 {
@@ -126,22 +127,43 @@ class HomeController extends Controller
     {
         return view('frontend.' . get_setting('homepage_select') . '.partials.best_sellers_section');
     }
+    // public function load_preorder_featured_products_section()
+    // {
+    //     // $preorder_products = Cache::remember('preorder_products', 3600, function () {
+    //         $preorder_products = PreorderProduct::where('is_published', 1)->where('is_featured',1)
+    //         ->where(function ($query) {
+    //             $query->whereHas('user', function ($q) {
+    //                 $q->where('user_type', 'admin');
+    //             })->orWhereHas('user.shop', function ($q) {
+    //                 $q->where('verification_status', 1);
+    //             });
+    //         })
+    //         ->latest()
+    //         ->limit(12)
+    //         ->get();
+    //     // });
+    //     return view('frontend.' . get_setting('homepage_select') . '.partials.preorder_products_section', compact('preorder_products'));
+    // }
+
     public function load_preorder_featured_products_section()
     {
-
-        // $preorder_products = Cache::remember('preorder_products', 3600, function () {
-            $preorder_products = PreorderProduct::where('is_published', 1)->where('is_featured',1)
-            ->where(function ($query) {
-                $query->whereHas('user', function ($q) {
-                    $q->where('user_type', 'admin');
-                })->orWhereHas('user.shop', function ($q) {
-                    $q->where('verification_status', 1);
-                });
-            })
-            ->latest()
-            ->limit(12)
-            ->get();
-        // });
+        $preorder_products = collect(); // fallback empty list
+    
+        if (Schema::hasTable('preorder_products')) {
+            $preorder_products = PreorderProduct::where('is_published', 1)
+                ->where('is_featured', 1)
+                ->where(function ($query) {
+                    $query->whereHas('user', function ($q) {
+                        $q->where('user_type', 'admin');
+                    })->orWhereHas('user.shop', function ($q) {
+                        $q->where('verification_status', 1);
+                    });
+                })
+                ->latest()
+                ->limit(12)
+                ->get();
+        }
+    
         return view('frontend.' . get_setting('homepage_select') . '.partials.preorder_products_section', compact('preorder_products'));
     }
 
