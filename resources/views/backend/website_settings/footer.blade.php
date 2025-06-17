@@ -244,20 +244,21 @@
             @csrf
            <div class="card-body">
 				<!-- Copyright Widget -->
-                <div class="card shadow-none bg-light">
+                <div class="card shadow-none bg-light d-none">
                     <div class="card-header">
-  						<h6 class="mb-0">{{ translate('Copyright Widget ') }}</h6>
-  					</div>
+                        <h6 class="mb-0">{{ translate('Copyright Widget ') }}</h6>
+                    </div>
                     <div class="card-body">
                         <div class="form-group">
-                  			<label>{{ translate('Copyright Text') }} ({{ translate('Translatable') }})</label>
-                  			<input type="hidden" name="types[][{{ $lang }}]" value="frontend_copyright_text">
-                  			<textarea class="aiz-text-editor form-control" name="frontend_copyright_text" data-buttons='[["font", ["bold", "underline", "italic"]],["insert", ["link"]],["view", ["undo","redo"]]]' placeholder="Type.." data-min-height="150">
+                            <label>{{ translate('Copyright Text') }} ({{ translate('Translatable') }})</label>
+                            <input type="hidden" name="types[][{{ $lang }}]" value="frontend_copyright_text">
+                            <textarea class="aiz-text-editor form-control" name="frontend_copyright_text" data-buttons='[["font", ["bold", "underline", "italic"]],["insert", ["link"]],["view", ["undo","redo"]]]' placeholder="Type.." data-min-height="150">
                                 {!! get_setting('frontend_copyright_text',null,$lang) !!}
                             </textarea>
-                  		</div>
+                        </div>
                     </div>
                 </div>
+
 
 				<!-- Social Link Widget -->
                 <div class="card shadow-none bg-light">
