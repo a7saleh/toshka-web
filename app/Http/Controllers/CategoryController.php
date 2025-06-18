@@ -215,29 +215,17 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
-        $category = Category::findOrFail($id);
-        $category->attributes()->detach();
+public function destroy($id)
+{
+    $category = Category::findOrFail($id);
+    $category->delete();
 
-        // Category Translations Delete
-        foreach ($category->category_translations as $key => $category_translation) {
-            $category_translation->delete();
-        }
+    Cache::forget('featured_categories');
 
-        // foreach (Product::where('category_id', $category->id)->get() as $product) {
-        //     $product->category_id = null;
-        //     $product->save();
-        // }
+    flash(translate('Category has been deleted successfully'))->success();
+    return redirect()->route('categories.index');
+}
 
-        Product::where('category_id', $category->id)->update(['category_id' => null]);
-
-        CategoryUtility::delete_category($id);
-        Cache::forget('featured_categories');
-
-        flash(translate('Category has been deleted successfully'))->success();
-        return redirect()->route('categories.index');
-    }
 
     public function updateFeatured(Request $request)
     {
