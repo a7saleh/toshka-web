@@ -11,7 +11,7 @@ use App\Http\Controllers\SellerPackageController;
 use App\Models\CombinedOrder;
 use App\Models\CustomerPackage;
 use App\Models\Order;
-use App\Models\SellerPackage;
+// use App\Models\SellerPackage;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Session;
@@ -31,7 +31,7 @@ class MyfatoorahController extends Controller
     }
 
     /**
-     * Create MyFatoorah invoice 
+     * Create MyFatoorah invoice
      *
      * @return \Illuminate\Http\Response
      */
@@ -87,7 +87,7 @@ class MyfatoorahController extends Controller
 
     /**
      * Get MyFatoorah payment information
-     * 
+     *
      * @return \Illuminate\Http\Response
      */
 

@@ -137,7 +137,7 @@
                                     <input type="email" class="form-control border-secondary rounded-0 text-white w-100 bg-transparent" placeholder="{{ translate('Your Email Address') }}" name="email" required>
                                 </div>
                                 <div class="col-4">
-                                    <button type="submit" class="btn btn-primary rounded-0 w-100">{{ translate('Subscribe') }}</button>
+                                    <button type="submit" style="background-color: #0036cb; color: white;" class="btn  rounded-0 w-100">{{ translate('Subscribe') }}</button>
                                 </div>
                             </div>
                         </form>
@@ -569,7 +569,7 @@
                             $rawText
                         );
                     @endphp
-                    
+
                     {!! $styledText !!}
 
                 </div>

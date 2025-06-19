@@ -589,11 +589,11 @@
         </div>
 
         <!-- Menu Bar -->
-        <div class="d-none d-lg-block position-relative bg-primary h-50px">
+        <div class="d-none d-lg-block position-relative  h-50px" style="background-color: #0036cb" >
             <div class="container h-100">
                 <div class="d-flex h-100">
                     <!-- Categoty Menu Button -->
-                    <div class="d-none d-xl-block all-category has-transition bg-black-10" id="category-menu-bar">
+                    <div class="d-none d-xl-block all-category has-transition " style="background-color: #0036cb" id="category-menu-bar">
                         <div class="px-3 h-100"
                             style="padding-top: 12px;padding-bottom: 12px; width:270px; cursor: pointer;">
                             <div class="d-flex align-items-center justify-content-between">

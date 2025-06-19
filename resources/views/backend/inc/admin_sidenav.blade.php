@@ -2208,10 +2208,10 @@
                 @endcanany
 
                 <!-- Addon Manager -->
-                @can('manage_addons')
+                {{-- @can('manage_addons')
                 <li class="aiz-side-nav-item">
                     <a href="{{route('addons.index')}}"
-                        class="aiz-side-nav-link {{ areActiveRoutes(['addons.index', 'addons.create'])}}">
+                        class="aiz-side-nav-link {{ areActiveRoutes(['addons.index', 'addons.create'])}}" style="display: none;">
                         <div class="aiz-side-nav-icon">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
                                 <path id="_0339d7f72e6ebf7daea77d00de6c6177"
@@ -2223,7 +2223,7 @@
                         <span class="aiz-side-nav-text">{{translate('Addon Manager')}}</span>
                     </a>
                 </li>
-                @endcan
+                @endcan --}}
             </ul><!-- .aiz-side-nav -->
         </div><!-- .aiz-side-nav-wrap -->
     </div><!-- .aiz-sidebar -->

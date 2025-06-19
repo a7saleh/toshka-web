@@ -264,7 +264,7 @@
                         <div class="text-{{ $custom_alert->text_color }} mb-3">
                             {!! $custom_alert->description !!}
                         </div>
-                        <button class="btn btn-block btn-primary rounded-0 aiz-cookie-accept">
+                        <button class="btn btn-block  rounded-0 aiz-cookie-accept" style="background-color: #0036cb; color: white;">
                             {{ translate('Ok. I Understood') }}
                         </button>
                     </div>

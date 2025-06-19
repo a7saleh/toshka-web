@@ -5,10 +5,10 @@
         </a>
     </div>
     <!-- Demo -->
-    <div class="aiz-floating-button">
+    <div class="aiz-floating-button"  >
         <a href="{{ route('demo',$homeStyle ?? get_setting('homepage_select')) }}">
             <span class="circle">
-                <span class="">
+                <span class="" style="background-color: #0036cb !important">
                     <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path
     d="M3.93751 7.996C5.41098 5.03473 8.46787 3 12 3C16.629 3 20.4418 6.49474 20.9439 10.9898M3.05493 13C3.55236 17.4999 7.36744 21 12 21C15.5328 21 18.5902 18.9645 20.0634 16.0023M3 4V8.5H7.5M21 20.5V16H16.5M11.5 9L10 12H14L12.5 15"
@@ -16,9 +16,9 @@
 </svg>
                 </span>
             </span>
-            <span class="text">
-                <span class="w-120px mr-3">{{ translate('Switch Home') }}</span>
-                <svg xmlns="http://www.w3.org/2000/svg" width="7.073" height="12" viewBox="0 0 7.073 12">
+            <span class="text" >
+                <span class="w-120px mr-3"  >{{ translate('Switch Home') }}</span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="7.073" height="12" viewBox="0 0 7.073 12" >
                     <path id="Path_41557" data-name="Path 41557"
                           d="M12.913,3.173,11.834,2.1,5.84,8.1l6,6,1.073-1.073L7.985,8.1Z"
                           transform="translate(12.913 14.1) rotate(180)" fill="#fff"/>
@@ -30,7 +30,7 @@
     <div class="aiz-floating-button">
         <a href="{{ route('categories.all') }}">
             <span class="circle">
-                <span class="">
+                <span class="" style="background-color: #0036cb">
                     <svg xmlns="http://www.w3.org/2000/svg" width="15" height="14" viewBox="0 0 15 14">
                         <g id="Group_29240" data-name="Group 29240" transform="translate(-18 -18)">
                           <rect id="Rectangle_21398" data-name="Rectangle 21398" width="15" height="2"
@@ -57,7 +57,7 @@
     <div class="aiz-floating-button">
         <a href="{{ route('flash-deals') }}">
             <span class="circle">
-                <span class="">
+                <span class="" style="background-color: #0036cb">
                     <svg xmlns="http://www.w3.org/2000/svg" width="13.333" height="20" viewBox="0 0 13.333 20">
                         <path id="Path_41551" data-name="Path 41551"
                               d="M28.294,12.246a.4.4,0,0,0-.353-.209H23.855l3.264-6.508a.352.352,0,0,0-.023-.357A.4.4,0,0,0,26.765,5H20.49a.394.394,0,0,0-.358.219l-5.1,10.741a.353.353,0,0,0,.029.353.4.4,0,0,0,.329.169h3.827l-1.857,8.069a.365.365,0,0,0,.216.414.407.407,0,0,0,.476-.106l10.2-12.222a.354.354,0,0,0,.045-.391Z"
@@ -79,7 +79,7 @@
     <div class="aiz-floating-button">
         <a href="{{ route('todays-deal') }}">
             <span class="circle">
-                <span class="">
+                <span class="" style="background-color: #0036cb">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
                         <g id="a47ac3ccd1557f7fbdb769f1c535b2b9" transform="translate(0 0)">
                           <path id="Path_41552" data-name="Path 41552"
