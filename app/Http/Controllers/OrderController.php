@@ -559,7 +559,7 @@ class OrderController extends Controller
 
     public function assign_delivery_boy(Request $request)
     {
-        if (addon_is_activated('delivery_boy')) {
+        // if (!addon_is_activated('delivery_boy')) {
 
             $order = Order::findOrFail($request->order_id);
             $order->assign_delivery_boy = $request->delivery_boy;
@@ -581,27 +581,27 @@ class OrderController extends Controller
 
             $delivery_history->save();
 
-            if (env('MAIL_USERNAME') != null && get_setting('delivery_boy_mail_notification') == '1') {
-                $array['view'] = 'emails.invoice';
-                $array['subject'] = translate('You are assigned to delivery an order. Order code') . ' - ' . $order->code;
-                $array['from'] = env('MAIL_FROM_ADDRESS');
-                $array['order'] = $order;
+            // if (env('MAIL_USERNAME') != null && get_setting('delivery_boy_mail_notification') == '1') {
+            //     $array['view'] = 'emails.invoice';
+            //     $array['subject'] = translate('You are assigned to delivery an order. Order code') . ' - ' . $order->code;
+            //     $array['from'] = env('MAIL_FROM_ADDRESS');
+            //     $array['order'] = $order;
 
-                try {
-                    Mail::to($order->delivery_boy->email)->queue(new InvoiceEmailManager($array));
-                } catch (\Exception $e) {
-                }
-            }
+            //     try {
+            //         Mail::to($order->delivery_boy->email)->queue(new InvoiceEmailManager($array));
+            //     } catch (\Exception $e) {
+            //     }
+            // }
 
-            if (addon_is_activated('otp_system') && SmsTemplate::where('identifier', 'assign_delivery_boy')->first()->status == 1) {
-                try {
-                    SmsUtility::assign_delivery_boy($order->delivery_boy->phone, $order->code);
-                } catch (\Exception $e) {
-                }
-            }
-        }
+            // if (addon_is_activated('otp_system') && SmsTemplate::where('identifier', 'assign_delivery_boy')->first()->status == 1) {
+            //     try {
+            //         SmsUtility::assign_delivery_boy($order->delivery_boy->phone, $order->code);
+            //     } catch (\Exception $e) {
+            //     }
+            // }
+        // }
 
-        return 1;
+
     }
 
     public function orderBulkExport(Request $request)
