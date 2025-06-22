@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 
 @php
-    $rtl = get_session_language()->rtl;
+    $language = get_session_language();
+    $rtl = $language && isset($language->rtl) ? $language->rtl : 0;
 @endphp
 
 @if ($rtl == 1)
@@ -25,6 +26,7 @@
     <meta name="keywords" content="@yield('meta_keywords', get_setting('meta_keywords'))">
 
     @yield('meta')
+
 
     <meta name="description" content="{{ $metaDescription ?? 'TOSHKA - تسوّق الآن واحصل على أفضل العروض والمنتجات الفريدة.' }}">
 
