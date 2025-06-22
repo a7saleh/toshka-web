@@ -9,15 +9,15 @@
             <!-- Banner -->
             @if ($todays_deal_banner != null || $todays_deal_banner_small != null)
                 <div class="overflow-hidden d-none d-md-block">
-                    <img src="{{ static_asset('assets/img/placeholder-rect.jpg') }}" 
-                        data-src="{{ uploaded_asset($todays_deal_banner) }}" 
-                        alt="{{ env('APP_NAME') }} promo" class="lazyload img-fit h-100 has-transition" 
+                    <img src="{{ static_asset('assets/img/placeholder-rect.jpg') }}"
+                        data-src="{{ uploaded_asset($todays_deal_banner) }}"
+                        alt="{{ env('APP_NAME') }} promo" class="lazyload img-fit h-100 has-transition"
                         onerror="this.onerror=null;this.src='{{ static_asset('assets/img/placeholder-rect.jpg') }}';">
                 </div>
                 <div class="overflow-hidden d-md-none">
-                    <img src="{{ static_asset('assets/img/placeholder-rect.jpg') }}" 
-                        data-src="{{ $todays_deal_banner_small != null ? uploaded_asset($todays_deal_banner_small) : uploaded_asset($todays_deal_banner) }}" 
-                        alt="{{ env('APP_NAME') }} promo" class="lazyload img-fit h-100 has-transition" 
+                    <img src="{{ static_asset('assets/img/placeholder-rect.jpg') }}"
+                        data-src="{{ $todays_deal_banner_small != null ? uploaded_asset($todays_deal_banner_small) : uploaded_asset($todays_deal_banner) }}"
+                        alt="{{ env('APP_NAME') }} promo" class="lazyload img-fit h-100 has-transition"
                         onerror="this.onerror=null;this.src='{{ static_asset('assets/img/placeholder-rect.jpg') }}';">
                 </div>
             @endif
@@ -25,7 +25,7 @@
             @php
                 $todays_deal_banner_text_color =  ((get_setting('todays_deal_banner_text_color') == 'light') ||  (get_setting('todays_deal_banner_text_color') == null)) ? 'text-white' : 'text-dark';
             @endphp
-            <div class="" style="background-color: {{ get_setting('todays_deal_bg_color', '#3d4666') }}">
+            <div class="x" style="background-color: {{ get_setting('todays_deal_bg_color', '#3d4666') }}">
                 <div class="text-right px-4 px-xl-5 pt-4 pt-md-3">
                     <a href="{{ route('todays-deal') }}" class="fs-12 fw-700 {{ $todays_deal_banner_text_color }} has-transition hov-text-secondary-base">{{ translate('View All') }}</a>
                 </div>
@@ -60,3 +60,9 @@
         </div>
     </section>
 @endif
+<style>
+.x {
+    opacity: 0.7;
+    transition: opacity 0.3s ease-in-out;
+}
+</style>
