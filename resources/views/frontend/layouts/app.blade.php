@@ -26,32 +26,21 @@
 
     @yield('meta')
 
-    @if (!isset($detailedProduct) && !isset($customer_product) && !isset($shop) && !isset($page) && !isset($blog))
-        @php
-            $meta_image = uploaded_asset(get_setting('meta_image'));
-        @endphp
-        <!-- Schema.org markup for Google+ -->
-        <meta itemprop="name" content="{{ get_setting('meta_title') }}">
-        <meta itemprop="description" content="{{ get_setting('meta_description') }}">
-        <meta itemprop="image" content="{{ $meta_image }}">
+    <meta name="description" content="{{ $metaDescription ?? 'TOSHKA - تسوّق الآن واحصل على أفضل العروض والمنتجات الفريدة.' }}">
 
-        <!-- Twitter Card data -->
-        <meta name="twitter:card" content="product">
-        <meta name="twitter:site" content="@publisher_handle">
-        <meta name="twitter:title" content="{{ get_setting('meta_title') }}">
-        <meta name="twitter:description" content="{{ get_setting('meta_description') }}">
-        <meta name="twitter:creator" content="@author_handle">
-        <meta name="twitter:image" content="{{ $meta_image }}">
+    <!-- Open Graph -->
+    <meta property="og:title" content="{{ $metaTitle ?? 'TOSHKA - عروض حصرية' }}">
+    <meta property="og:description" content="{{ $metaDescription ?? 'تسوّق من TOSHKA وتمتع بأفضل تجربة تسوق.' }}">
+    <meta property="og:image" content="{{ $metaImage ?? asset('images/SEO.png') }}">
+    <meta property="og:url" content="{{ url()->current() }}">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="TOSHKA">
 
-        <!-- Open Graph data -->
-        <meta property="og:title" content="{{ get_setting('meta_title') }}" />
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content="{{ route('home') }}" />
-        <meta property="og:image" content="{{ $meta_image }}" />
-        <meta property="og:description" content="{{ get_setting('meta_description') }}" />
-        <meta property="og:site_name" content="{{ env('APP_NAME') }}" />
-        <meta property="fb:app_id" content="{{ env('FACEBOOK_PIXEL_ID') }}">
-    @endif
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{ $metaTitle ?? 'TOSHKA - تسوّق الآن' }}">
+    <meta name="twitter:description" content="{{ $metaDescription ?? 'احصل على أفضل الصفقات من TOSHKA' }}">
+    <meta name="twitter:image" content="{{ $metaImage ?? asset('images/SEO.png') }}">
 
     <!-- Favicon -->
     @php

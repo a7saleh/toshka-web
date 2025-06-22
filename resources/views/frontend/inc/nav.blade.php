@@ -45,7 +45,7 @@
                                             <a href="javascript:void(0)" data-flag="{{ $language->code }}"
                                                 class="dropdown-item @if ($system_language->code == $language->code) active @endif">
                                                 <img src="{{ static_asset('assets/img/placeholder.jpg') }}"
-                                                    data-src="{{ static_asset('assets/img/flags/' . $language->code . '.png') }}"
+                                                    data-src="{{ static_asset('assets/img/flags/' . $language->code . '.svg') }}"
                                                     class="mr-1 lazyload" alt="{{ $language->name }}" height="11">
                                                 <span class="language">{{ $language->name }}</span>
                                             </a>

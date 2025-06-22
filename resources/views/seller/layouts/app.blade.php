@@ -15,7 +15,25 @@
 
 	<!-- Favicon -->
 	<link rel="icon" href="{{ uploaded_asset(get_setting('site_icon')) }}">
-	<title>{{ get_setting('website_name').' | '.get_setting('site_motto') }}</title>
+	   <title>{{ $metaTitle ?? 'TOSHKA - أفضل المنتجات بأفضل الأسعار' }}</title>
+    <meta name="description" content="{{ $metaDescription ?? 'TOSHKA - تسوّق الآن واحصل على أفضل العروض والمنتجات الفريدة.' }}">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="{{ $metaTitle ?? 'TOSHKA - عروض حصرية' }}">
+    <meta property="og:description" content="{{ $metaDescription ?? 'تسوّق من TOSHKA وتمتع بأفضل تجربة تسوق.' }}">
+    <meta property="og:image" content="{{ $metaImage ?? asset('images/SEO.png') }}">
+    <meta property="og:url" content="{{ url()->current() }}">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="TOSHKA">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{ $metaTitle ?? 'TOSHKA - تسوّق الآن' }}">
+    <meta name="twitter:description" content="{{ $metaDescription ?? 'احصل على أفضل الصفقات من TOSHKA' }}">
+    <meta name="twitter:image" content="{{ $metaImage ?? asset('images/SEO.png') }}">
+
+
+
 
 	<!-- google font -->
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700">
