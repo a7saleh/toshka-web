@@ -48,7 +48,7 @@ class LanguageController extends Controller
         $language->name = $request->name;
         $language->code = $request->code;
         $language->app_lang_code = $request->app_lang_code;
-        $language->save();   
+        $language->save();
 
         Cache::forget('app.languages');
 
@@ -61,13 +61,13 @@ class LanguageController extends Controller
         $sort_search = null;
         $language = Language::findOrFail($id);
         $lang_keys = Translation::where('lang', 'en');
-        
+
         if ($request->has('search')){
             $sort_search = $request->search;
             $lang_keys = $lang_keys->where('lang_key', 'like', '%'.preg_replace('/[^A-Za-z0-9\_]/', '', str_replace(' ', '_', strtolower($sort_search))).'%');
         }
         $lang_keys = $lang_keys->paginate(50);
-        
+
         return view('backend.setup_configurations.languages.language_view', compact('language','lang_keys','sort_search'));
     }
 
@@ -91,12 +91,12 @@ class LanguageController extends Controller
             flash(translate('English language code cannot be edited'))->error();
             return back();
         }
-        
+
         $language->name = $request->name;
         $language->code = $request->code;
-        $language->app_lang_code = $request->app_lang_code; 
+        $language->app_lang_code = $request->app_lang_code;
         $language->save();
-        
+
         Cache::forget('app.languages');
 
         $file = base_path("/public/assets/myText.txt");
@@ -190,7 +190,7 @@ class LanguageController extends Controller
         $path = Storage::disk('local')->put('app-translations', $request->lang_file);
 
         $contents = file_get_contents(public_path($path));
-        
+
         try {
             foreach(json_decode($contents) as $key => $value){
                 AppTranslation::updateOrCreate(
@@ -237,7 +237,7 @@ class LanguageController extends Controller
             // Write into the json file
             $filename = "app_{$language->app_lang_code}.arb";
             $contents = AppTranslation::where('lang', $language->app_lang_code)->pluck('lang_value', 'lang_key')->toJson();
-            
+
             return response()->streamDownload(function () use ($contents) {
                 echo $contents;
             }, $filename);
@@ -252,7 +252,7 @@ class LanguageController extends Controller
         $data['unique_identifier'] = $unique_identifier;
         $data['main_item'] = get_setting('item_name') ?? 'eCommerce';
         $request_data_json = json_encode($data);
-        
+
         $gate = "https://activation.activeitzone.com/check_addon_activation";
 
         $header = array(
@@ -277,4 +277,23 @@ class LanguageController extends Controller
             return redirect()->route('admin.dashboard');
         }
     }
+    public function add_translation_key(Request $request)
+{
+    $request->validate([
+        'lang_key' => 'required|string|unique:translations,lang_key',
+        'lang_value' => 'required|string',
+        'lang' => 'required|string'
+    ]);
+
+    Translation::create([
+        'lang_key' => $request->lang_key,
+        'lang_value' => $request->lang_value,
+        'lang' => $request->lang,
+    ]);
+
+    Cache::forget('translations-'.$request->lang);
+
+    flash('New translation key added.')->success();
+    return back();
+}
 }

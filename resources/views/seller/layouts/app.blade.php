@@ -81,9 +81,22 @@
 				<div class="px-15px px-lg-25px">
                     @yield('panel_content')
 				</div>
-				<div class="bg-white text-center py-3 px-15px px-lg-25px mt-auto border-sm-top">
-					<p class="mb-0">&copy; {{ get_setting('site_name') }} v{{ get_setting('current_version') }}</p>
-				</div>
+				<div class="bg-white py-3 px-15px px-lg-25px mt-auto border-sm-top">
+    <div class="row align-items-center">
+        <div class="col-lg-6 order-1 order-lg-0">
+            <div class="text-center text-lg-left fs-14" current-verison="{{ get_setting('current_version') }}">
+                <span>
+                    {{ translate('Copyright') }} {{ now()->year }}
+                   <a href="https://geeltech.com/" class="geeltech-hover" target="_blank">
+    {{ translate('Geel Tech') }}
+</a>
+                    {{ translate('- All rights reserved.') }}
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
 			</div><!-- .aiz-main-content -->
 		</div><!-- .aiz-content-wrapper -->
 	</div><!-- .aiz-main-wrapper -->
@@ -157,3 +170,14 @@
 
 </body>
 </html>
+<style>
+    .geeltech-hover {
+        color: inherit;
+        font-weight: 600;
+        transition: color 0.3s;
+        cursor: pointer;
+    }
+    .geeltech-hover:hover {
+        color: #0036cb;
+    }
+</style>

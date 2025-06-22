@@ -4,8 +4,7 @@ namespace App\Http\Controllers\Api\V2;
 
 use App\Http\Middleware\EnsureSystemKey;
 use Illuminate\Support\Facades\Route;
-
-
+use App\Http\Controllers\LanguageController;
 
 Route::group(['prefix' => 'v2/auth', 'middleware' => ['app_language']], function () {
 
@@ -36,7 +35,7 @@ Route::group(['prefix' => 'v2/auth', 'middleware' => ['app_language']], function
 
 Route::group(['prefix' => 'v2', 'middleware' => ['app_language']], function () {
 
-
+Route::post('/translations/add-key', [LanguageController::class, 'add_translation_key'])->name('translations.add_key');
     //auth controller
     Route::post('guest-user-account-create', [AuthController::class, 'guestUserAccountCreate']);
 

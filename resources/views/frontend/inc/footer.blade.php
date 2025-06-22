@@ -319,7 +319,7 @@
                             <li class="mb-2">
                                 <p class="fs-13 text-soft-light mb-0">
                                     {{ translate('Become A Seller') }}
-                                    <a href="{{ route('shops.create') }}" class="fs-13 fw-700 text-secondary-base ml-2">{{ translate('Apply Now') }}</a>
+                                    <a href="{{ route('shops.create') }}" class="fs-13 fw-700  ml-2" style="color: #0036cb">{{ translate('Apply Now') }}</a>
                                 </p>
                             </li>
                             @guest
@@ -557,39 +557,33 @@
 <!-- FOOTER -->
 <footer class="pt-3 pb-7 pb-xl-3 bg-black text-soft-light">
     <div class="container">
-        <div class="row align-items-center py-3">
-            <!-- Copyright -->
-            <div class="col-lg-6 order-1 order-lg-0">
-                <div class="text-center text-lg-left fs-14" current-verison="{{get_setting("current_version")}}">
-                   @php
-                        $rawText = get_setting('frontend_copyright_text', null, App::getLocale());
-                        $styledText = str_replace(
-                            'Geel Tech',
-                            '<a href="https://geeltech.com" style="color: #38B6FD; text-decoration: none;" target="_blank">Geel Tech</a>',
-                            $rawText
-                        );
-                    @endphp
-
-                    {!! $styledText !!}
-
-                </div>
-            </div>
-
-            <!-- Payment Method Images -->
-            <div class="col-lg-6 mb-4 mb-lg-0">
-                <div class="text-center text-lg-right">
-                    <ul class="list-inline mb-0">
-                        @if ( get_setting('payment_method_images') !=  null )
-                            @foreach (explode(',', get_setting('payment_method_images')) as $key => $value)
-                                <li class="list-inline-item mr-3">
-                                    <img src="{{ uploaded_asset($value) }}" height="20" class="mw-100 h-auto" style="max-height: 20px" alt="{{ translate('payment_method') }}">
-                                </li>
-                            @endforeach
-                        @endif
-                    </ul>
-                </div>
-            </div>
+     <div class="row align-items-center py-3">
+    <!-- Copyright -->
+    <div class="col-lg-6 order-1 order-lg-0">
+        <div class="text-center text-lg-left fs-14" current-verison="{{ get_setting('current_version') }}">
+            <span>
+             {{ translate('Copyright') }}  {{ now()->year }}
+                <span class="geeltech-hover">{{ translate('Geel Tech') }}</span>
+                {{ translate('- All rights reserved.') }}
+            </span>
         </div>
+    </div>
+
+    <!-- Payment Method Images -->
+    <div class="col-lg-6 mb-4 mb-lg-0">
+        <div class="text-center text-lg-right">
+            <ul class="list-inline mb-0">
+                @if (get_setting('payment_method_images') != null)
+                    @foreach (explode(',', get_setting('payment_method_images')) as $key => $value)
+                        <li class="list-inline-item mr-3">
+                            <img src="{{ uploaded_asset($value) }}" height="20" class="mw-100 h-auto" style="max-height: 20px" alt="{{ translate('payment_method') }}">
+                        </li>
+                    @endforeach
+                @endif
+            </ul>
+        </div>
+    </div>
+</div>
     </div>
 </footer>
 
@@ -732,3 +726,15 @@
         </div>
     </div>
 @endif
+<style>
+    .geeltech-hover {
+        color: inherit;
+        font-weight: 600;
+        transition: color 0.3s;
+        cursor: pointer;
+    }
+
+    .geeltech-hover:hover {
+        color: #0036cb;
+    }
+</style>
