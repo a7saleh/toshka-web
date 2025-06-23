@@ -160,6 +160,8 @@ Route::controller(HomeController::class)->group(function () {
     Route::get('/return-policy', 'returnpolicy')->name('returnpolicy');
     Route::get('/support-policy', 'supportpolicy')->name('supportpolicy');
     Route::get('/terms', 'terms')->name('terms');
+    Route::get('driverApp/privacy-policy', 'termsDriver')->name('termsDriver.terms');
+    Route::get('sellerApp/privacy-policy', 'termsSeller')->name('termsSeller.terms');
     Route::get('/privacy-policy', 'privacypolicy')->name('privacypolicy');
 
     Route::get('/track-your-order', 'trackOrder')->name('orders.track');

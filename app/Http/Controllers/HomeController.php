@@ -148,7 +148,7 @@ class HomeController extends Controller
     public function load_preorder_featured_products_section()
     {
         $preorder_products = collect(); // fallback empty list
-    
+
         if (Schema::hasTable('preorder_products')) {
             $preorder_products = PreorderProduct::where('is_published', 1)
                 ->where('is_featured', 1)
@@ -163,7 +163,7 @@ class HomeController extends Controller
                 ->limit(12)
                 ->get();
         }
-    
+
         return view('frontend.' . get_setting('homepage_select') . '.partials.preorder_products_section', compact('preorder_products'));
     }
 
@@ -735,7 +735,15 @@ class HomeController extends Controller
         $page =  Page::where('type', 'terms_conditions_page')->first();
         return view("frontend.policies.terms", compact('page'));
     }
+public function termsDriver()
+{
+    return view("frontend.policies.termsDriver");
+}
 
+public function termsSeller()
+{
+    return view("frontend.policies.termsSeller");
+}
     public function privacypolicy()
     {
         $page =  Page::where('type', 'privacy_policy_page')->first();
