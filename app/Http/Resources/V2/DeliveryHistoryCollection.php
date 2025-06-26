@@ -15,7 +15,7 @@ class DeliveryHistoryCollection extends ResourceCollection
                     'id' => $data->id,
                     'delivery_boy_id' => $data->delivery_boy_id,
                     'order_id' => $data->order_id,
-                    'order_code' => $data->order->code,
+                    'order_code' => optional($data->order)->code,
                     'delivery_status' => $data->delivery_status,
                     'earning' => format_price($data->earning) ,
                     'collection' => format_price($data->collection),
