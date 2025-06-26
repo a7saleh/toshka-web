@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Api\V2;
 
 use App\Http\Middleware\EnsureSystemKey;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\LanguageController;
+// use App\Http\Controllers\LanguageController;
 
 Route::group(['prefix' => 'v2/auth', 'middleware' => ['app_language']], function () {
 
