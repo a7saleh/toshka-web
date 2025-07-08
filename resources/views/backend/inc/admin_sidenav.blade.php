@@ -43,7 +43,20 @@
                     </a>
                 </li>
                 @endcan
-
+<li class="aiz-side-nav-item">
+  <a href="{{route('delivery-boys.index')}}" class="aiz-side-nav-link">
+    <div class="aiz-side-nav-icon">
+      <!-- نفس أيقونة Dashboard -->
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
+        <path id="_3d6902ec768df53cd9e274ca8a57e401"
+              data-name="3d6902ec768df53cd9e274ca8a57e401"
+              d="M18,12.286a1.715,1.715,0,0,0-1.714-1.714h-4a1.715,1.715,0,0,0-1.714,1.714v4A1.715,1.715,0,0,0,12.286,18h4A1.715,1.715,0,0,0,18,16.286Zm-8.571,0a1.715,1.715,0,0,0-1.714-1.714h-4A1.715,1.715,0,0,0,2,12.286v4A1.715,1.715,0,0,0,3.714,18h4a1.715,1.715,0,0,0,1.714-1.714Z..."
+              transform="translate(-2 -2)" fill="#575b6a" fill-rule="evenodd" />
+      </svg>
+    </div>
+    <span class="aiz-side-nav-text">{{ translate('All Delivery Boys') }}</span>
+  </a>
+</li>
                 <!-- POS Addon-->
                 @if (addon_is_activated('pos_system') && (auth()->user()->can('pos_manager') || auth()->user()->can('pos_configuration')))
                 <li class="aiz-side-nav-item">
