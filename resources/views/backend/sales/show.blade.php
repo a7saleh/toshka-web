@@ -94,7 +94,7 @@
             </div>
             <div class="mb-3">
                 @php
-                    $removedXML = '<?xml version="1.0" encoding="UTF-8"?>';
+                    $removedXML = '<?xml' . ' version="1.0" encoding="UTF-8"?>';
                 @endphp
                 {!! str_replace($removedXML, '', QrCode::size(100)->generate($order->code)) !!}
             </div>
@@ -174,6 +174,14 @@
                             <tr>
                                 <td class="text-main text-bold">{{ translate('Additional Info') }}</td>
                                 <td class="text-right">{{ $order->additional_info }}</td>
+                            </tr>
+                            <tr>
+                                <td class="text-left">
+                                    @php
+                                        $removedXML = '<?xml' . ' version="1.0" encoding="UTF-8"?>';
+                                    @endphp
+                                    {!! str_replace($removedXML, '', QrCode::size(100)->generate($order->code)) !!}
+                                </td>
                             </tr>
                         </tbody>
                     </table>

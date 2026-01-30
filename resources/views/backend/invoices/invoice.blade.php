@@ -11,10 +11,10 @@
 		}
 		body{
 			font-size: 0.875rem;
-            font-family: '<?php echo  $font_family ?>';
+            font-family: '{{ $font_family }}';
             font-weight: normal;
-            direction: <?php echo  $direction ?>;
-            text-align: <?php echo  $text_align ?>;
+            direction: {{ $direction }};
+            text-align: {{ $text_align }};
 			padding:0;
 			margin:0; 
 		}
@@ -42,10 +42,10 @@
 			border-bottom:1px solid #eceff4;
 		}
 		.text-left{
-			text-align:<?php echo  $text_align ?>;
+			text-align:{{ $text_align }};
 		}
 		.text-right{
-			text-align:<?php echo  $not_text_align ?>;
+			text-align:{{ $not_text_align }};
 		}
 	</style>
 </head>
@@ -108,7 +108,7 @@
 				@endphp
 				<tr><td class="strong small gry-color">{{ translate('Bill to') }}:</td></tr>
 				<tr><td class="strong">{{ $shipping_address->name }}</td></tr>
-				<tr><td class="gry-color small">{{ $shipping_address->address }}, {{ $shipping_address->city }},  @if(isset(json_decode($order->shipping_address)->state)) {{ json_decode($order->shipping_address)->state }} - @endif {{ $shipping_address->postal_code }}, {{ $shipping_address->country }}</td></tr>
+				<tr><td class="gry-color small">{{ $shipping_address->address }}, {{ $shipping_address->city }},  @if(isset($shipping_address->state)) {{ $shipping_address->state }} - @endif {{ $shipping_address->postal_code }}, {{ $shipping_address->country }}</td></tr>
 				<tr><td class="gry-color small">{{ translate('Email') }}: {{ $shipping_address->email }}</td></tr>
 				<tr><td class="gry-color small">{{ translate('Phone') }}: {{ $shipping_address->phone }}</td></tr>
 			</table>
@@ -136,9 +136,12 @@
                                     <br>
                                     <small>
                                         @php
-                                            $product_stock = json_decode($orderDetail->product->stocks->first(), true);
+                                            $firstStock = $orderDetail->product->stocks->first();
+                                            $product_stock = $firstStock ? json_decode($firstStock, true) : [];
                                         @endphp
-                                        {{translate('SKU')}}: {{ $product_stock['sku'] }}
+                                        @if(!empty($product_stock['sku']))
+                                            {{translate('SKU')}}: {{ $product_stock['sku'] }}
+                                        @endif
                                     </small>
                                 </td>
 								<td>
@@ -146,7 +149,7 @@
 										{{ translate('Home Delivery') }}
 									@elseif ($order->shipping_type == 'pickup_point')
 										@if ($order->pickup_point != null)
-											{{ $order->pickup_point->getTranslation('name') }} ({{ translate('Pickip Point') }})
+										{{ $order->pickup_point->getTranslation('name') }} ({{ translate('Pickup Point') }})
 										@else
                                             {{ translate('Pickup Point') }}
 										@endif
@@ -154,7 +157,7 @@
 										@if ($order->carrier != null)
 											{{ $order->carrier->name }} ({{ translate('Carrier') }})
 											<br>
-											{{ translate('Transit Time').' - '.$order->carrier->transit_time }}
+										{{ translate('Transit Time') }}: {{ $order->carrier->transit_time }}
 										@else
 											{{ translate('Carrier') }}
 										@endif
@@ -173,20 +176,21 @@
 
 	    <div style="padding:0 1.5rem;">
 	        <table class="text-right sm-padding small strong">
-	        	<thead>
-	        		<tr>
-	        			<th width="60%"></th>
-	        			<th width="40%"></th>
-	        		</tr>
-	        	</thead>
-		        <tbody>
-			        <tr>
-			            <td class="text-left">
-                            @php
-                                $removedXML = '<?xml version="1.0" encoding="UTF-8"?>';
-                            @endphp
-                            {!! str_replace($removedXML,"", QrCode::size(100)->generate($order->code)) !!}
-			            </td>
+				<thead>
+					<tr>
+						<th width="60%"></th>
+						<th width="40%"></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td class="text-left">
+							@php
+								$qrCode = QrCode::size(100)->generate($order->code);
+								$qrCode = substr($qrCode, strpos($qrCode, '?>') + 2);
+							@endphp
+							{!! $qrCode !!}
+						</td>
 			            <td>
 					        <table class="text-right sm-padding small strong">
 						        <tbody>
